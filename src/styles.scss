@@ -25,8 +25,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     }
 }
 
-
-
 .example-toolbar {
     background-color: #2a93c9; /* Cambia el color de fondo a rojo */
     color: #dce9ec; /* Cambia el color del texto a blanco */
@@ -39,7 +37,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .custom-menu {
-    background-color: #0b415a !important;   
+    background-color: #7397b6  !important;   
+    color: white !important;
 }
 
 .mat-bottom-sheet-container {
@@ -107,6 +106,18 @@ input:focus {
 .input-Login:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0 30px white inset !important; /* Ajusta este valor según sea necesario */
     color: rgb(33, 88, 192) !important; 
+}
+
+::placeholder {
+    color: rgb(108, 109, 158); // Reemplace con el color deseado
+}
+
+input:disabled {
+    color: rgb(77, 77, 78) !important; /* Replace with your desired text color */
+}
+
+textarea:disabled {
+    color: rgb(77, 77, 78) !important; /* Replace with your desired text color */
 }
 
 /************************************************** FormControl ***********************************************/

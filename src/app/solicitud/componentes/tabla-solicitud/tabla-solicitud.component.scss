@@ -91,19 +91,24 @@ section {
 /* Personalizacion de campos head de tabla */
 th.data-table-head.font-color:nth-child(1) {
     width: auto;
+    min-width: 60px;
+    text-align: center;
 }
 
 th.data-table-head.font-color:nth-child(2) {
-
     width: auto;
+    min-width: 140px;
+    text-align: center;
 }
 
 th.data-table-head.font-color:nth-child(3) {
-    width: 15%;
+    width: auto;
+    min-width: 140px;
+    text-align: center;
 }
 
 th.data-table-head.font-color:nth-child(4) {
-    width: 40%;
+    width: 35%;
 }
 
 th.data-table-head.font-color:nth-child(5) {
@@ -116,7 +121,27 @@ th.data-table-head.font-color:nth-child(6) {
 }
 
 /* Personalizacion de campos td de tabla */
+td.data-table-body.font-color:nth-child(1) {
+  text-align: center;
+}
+
+td.data-table-body.font-color:nth-child(2) {
+  text-align: center;
+}
+
+td.data-table-body.font-color:nth-child(3) {
+  text-align: center;
+}
 
 td.data-table-body.font-color:nth-child(6) {
     text-align: center;
 }
+td.data-table-body.font-color:nth-child(7) {
+
+  cursor: pointer;
+}
+
+.mat-menu-item-style {
+  color: white;
+}
+

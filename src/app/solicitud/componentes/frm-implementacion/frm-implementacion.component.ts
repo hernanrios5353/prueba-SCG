@@ -57,7 +57,7 @@ export class FrmImplementacionComponent  implements OnInit{
     this.frm_implementacion = this.formBuilder.group({
       idimplementacion: [''],
       idsolicitud: [''],
-      fecha_implementacion: ['', Validators.required],
+      fecha_implementacion: [moment().format('DD-MM-YYYY'), Validators.required],
       implementacion: ['', Validators.required],
       fecha_creacion: [moment().format('YYYY-MM-DD HH:mm:ss'), Validators.required],
     });
@@ -157,6 +157,12 @@ export class FrmImplementacionComponent  implements OnInit{
         return;
       }
     }
+    else{
+      this.openSnackBar('Primero debe registrar una evaluación.');
+      return;
+    }
+
+    console.log(procesosActuales);
 
     let fecha_implementacion = moment(frm_implementacion.value.fecha_implementacion, 'DD/MM/YYYY').format('YYYY-MM-DD');
     frm_implementacion.get('fecha_implementacion')?.setValue(fecha_implementacion);
@@ -347,11 +353,15 @@ export class FrmImplementacionComponent  implements OnInit{
       this.ocultarBotones(true, true);
     }
     else if(this.Input_data.opc == 3){
-      this.titulo = 'Ver evaluación';
-      this.set_frm_implementacion(data);
+      this.titulo = 'Ver implementación';
+
+      let procesos = data.proceso as any[];
+      let implementacion = procesos.find(item => item.idimplementacion !== undefined);
+
+      this.set_frm_implementacion(implementacion);
       this.frm_implementacion.disable();
-      this.titulo_btn_guardar = 'Cerrar';
-      this.ocultarBotones(true, false);
+      this.titulo_btn_cancelar = 'Cerrar';
+      this.ocultarBotones(false, true);
     }
   }
 

@@ -1,10 +1,17 @@
 export interface Solicitud {
     idsolicitud: string;
     fecha_solicitud: string;
+    fecha_solicitud2?: string;
+    fecha_solicitud3?: string;
     solicitud: string;
     fecha_creacion: string;
+    fecha_creacion2?: string;
+    fecha_creacion3?: string;
     afectado: string;
     proceso: Proceso[];
+    estado?: 'Pendiente' | 'Evaluación' | 'Implementación' | 'Terminado';
+    estado2?: 1 | 2 | 3 | 4;
+    busqueda?: string;
 }
 
 export interface Proceso {
@@ -38,6 +45,6 @@ export interface Terminacion {
     idsolicitud: string;
     fecha_terminacion: string;
     terminacion: string;
-    estado: 'Satisfactoria' | 'Cancelación';
+    estado: '1' | '2';
     fecha_creacion: string;
 }

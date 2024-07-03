@@ -57,7 +57,7 @@ export class FrmEvaluacionComponent  implements OnInit{
     this.frm_evaluacion = this.formBuilder.group({
       idevaluacion: [''],
       idsolicitud: [''],
-      fecha_evaluacion: ['', Validators.required],
+      fecha_evaluacion: [moment().format('DD-MM-YYYY'), Validators.required],
       solicitud_evaluacion: ['', Validators.required],
       fecha_creacion: [moment().format('YYYY-MM-DD HH:mm:ss'), Validators.required],
     });
@@ -342,10 +342,13 @@ export class FrmEvaluacionComponent  implements OnInit{
     }
     else if(this.Input_data.opc == 3){
       this.titulo = 'Ver evaluación';
-      this.set_frm_evaluacion(data);
+      let procesos = data.proceso as any[];
+      let evaluacion = procesos.find(item => item.idevaluacion !== undefined);
+
+      this.set_frm_evaluacion(evaluacion);
       this.frm_evaluacion.disable();
-      this.titulo_btn_guardar = 'Cerrar';
-      this.ocultarBotones(true, false);
+      this.titulo_btn_cancelar = 'Cerrar';
+      this.ocultarBotones(false, true);
     }
   }
 

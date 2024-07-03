@@ -12,7 +12,7 @@ import { MatLabel } from '@angular/material/form-field';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
 
-// librerias
+// Librerias
 import moment from 'moment';
 
 // servicios
@@ -22,7 +22,7 @@ import { SolicitudService } from '../../servicios/solicitud.service';
 import { Solicitud, Terminacion } from '../../modelos/solicitud';
 
 interface Estado {
-  value: number;
+  value: string;
   estado: string;
 }
 
@@ -50,8 +50,8 @@ export class FrmTerminacionComponent implements OnInit{
 
   frm_terminacion: FormGroup;
 
-  titulo: string = 'Crear implementación';
-  titulo_btn_guardar: string = 'Crear implementación';
+  titulo: string = 'Crear terminación';
+  titulo_btn_guardar: string = 'Crear terminación';
   titulo_btn_cancelar: string = 'Cancelar';
 
   bool_btn_guardar: boolean = true;
@@ -60,8 +60,8 @@ export class FrmTerminacionComponent implements OnInit{
   estadoSeleccionado: number = 0;
 
   estadosTerminacion: Estado[] = [
-    {value: 1, estado: 'Satisfactoria'},
-    {value: 2, estado: 'Cancelación'},
+    {value: "1", estado: 'Satisfactoria'},
+    {value: "2", estado: 'Cancelación'},
   ];
 
   constructor(
@@ -72,7 +72,7 @@ export class FrmTerminacionComponent implements OnInit{
     this.frm_terminacion = this.formBuilder.group({
       idterminacion: [''],
       idsolicitud: [''],
-      fecha_terminacion: ['', Validators.required],
+      fecha_terminacion: [moment().format('DD-MM-YYYY'), Validators.required],
       terminacion: ['', Validators.required],
       estado: ['', Validators.required],
       fecha_creacion: [moment().format('YYYY-MM-DD HH:mm:ss'), Validators.required],
@@ -92,7 +92,7 @@ export class FrmTerminacionComponent implements OnInit{
           return
         }
       
-        this.F_editar_implementacion(this.frm_terminacion);
+        this.F_editar_terminacion(this.frm_terminacion);
       }
       else if (!this.frm_terminacion.value.idevaluacion){
 
@@ -102,7 +102,7 @@ export class FrmTerminacionComponent implements OnInit{
           return
         }
 
-        this.F_crear_implementacion(this.frm_terminacion);
+        this.F_crear_terminacion(this.frm_terminacion);
       }
     } else {
 
@@ -111,7 +111,7 @@ export class FrmTerminacionComponent implements OnInit{
     }
   }
 
-  F_editar_implementacion(frm_terminacion: FormGroup){
+  F_editar_terminacion(frm_terminacion: FormGroup){
 
     let fecha_terminacion = moment(frm_terminacion.value.fecha_terminacion, 'DD/MM/YYYY').format('YYYY-MM-DD');
     frm_terminacion.get('fecha_terminacion')?.setValue(fecha_terminacion);
@@ -121,7 +121,7 @@ export class FrmTerminacionComponent implements OnInit{
       idsolicitud: this.Input_data.idsolicitud,
       fecha_terminacion: frm_terminacion.value.fecha_terminacion,
       terminacion: frm_terminacion.value.terminacion,
-      estado: 'Satisfactoria',
+      estado: '1',
       fecha_creacion: frm_terminacion.value.fecha_creacion,
     };
 
@@ -155,12 +155,18 @@ export class FrmTerminacionComponent implements OnInit{
 
   };
 
-  F_crear_implementacion(frm_terminacion: FormGroup) {
+  F_crear_terminacion(frm_terminacion: FormGroup) {
 
     let procesosActuales = this.Input_data.data.proceso as any[];
 
     // validar que no exista una terminacion o la solicitud este terminada
     if(procesosActuales && procesosActuales.length > 0 ){
+
+      let existeImplementacion = procesosActuales.find(item => item.idimplementacion !== undefined);
+      if(!existeImplementacion){
+        this.openSnackBar('Primero debe registrar una implementación.');
+        return;
+      }
 
       let existeTerminacion = procesosActuales.find(item => item.idterminacion !== undefined);
       if(existeTerminacion){
@@ -168,6 +174,10 @@ export class FrmTerminacionComponent implements OnInit{
         return;
       }
 
+    }
+    else{
+      this.openSnackBar('Primero debe registrar una implementación.');
+      return;
     }
 
     let fecha_terminacion = moment(frm_terminacion.value.fecha_terminacion, 'DD/MM/YYYY').format('YYYY-MM-DD');
@@ -184,7 +194,7 @@ export class FrmTerminacionComponent implements OnInit{
       idsolicitud: this.Input_data.data.idsolicitud,
       fecha_terminacion: frm_terminacion.value.fecha_terminacion,
       terminacion: frm_terminacion.value.terminacion,
-      estado: 'Satisfactoria',
+      estado: frm_terminacion.value.estado.toString(),
       fecha_creacion: frm_terminacion.value.fecha_creacion,
     };
 
@@ -351,22 +361,25 @@ export class FrmTerminacionComponent implements OnInit{
     console.log(data);
 
     if(this.Input_data.opc == 1){
-      this.titulo = 'Crear Terminación';
-      this.titulo_btn_guardar = 'Crear Terminación';
+      this.titulo = 'Crear terminación';
+      this.titulo_btn_guardar = 'Crear terminación';
       this.ocultarBotones(true, true);
     }
     else if(this.Input_data.opc == 2){
-      this.titulo = 'Editar Terminación';
+      this.titulo = 'Editar terminación';
       this.set_frm_terminacion(data);
-      this.titulo_btn_guardar = 'Editar Terminación';
+      this.titulo_btn_guardar = 'Editar terminación';
       this.ocultarBotones(true, true);
     }
     else if(this.Input_data.opc == 3){
-      this.titulo = 'Ver Terminación';
-      this.set_frm_terminacion(data);
+      this.titulo = 'Ver terminación';
+      let procesos = data.proceso as any[];
+      let terminacion = procesos.find(item => item.idterminacion !== undefined);
+
+      this.set_frm_terminacion(terminacion);
       this.frm_terminacion.disable();
-      this.titulo_btn_guardar = 'Cerrar';
-      this.ocultarBotones(true, false);
+      this.titulo_btn_cancelar = 'Cerrar';
+      this.ocultarBotones(false, true);
     }
   }
 

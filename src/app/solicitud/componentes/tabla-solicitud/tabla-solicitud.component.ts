@@ -1,6 +1,7 @@
 // Core angular
 import {Component, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {CommonModule } from '@angular/common';
 
 // Angular Material
 import {MatTableModule} from '@angular/material/table';
@@ -11,6 +12,9 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatDialog} from '@angular/material/dialog';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
+
+// Librerias
+import moment from 'moment';
 
 // Componentes
 import {ModalComponent} from '../../../shared/emergentes/modal/modal.component';
@@ -32,13 +36,13 @@ import {Solicitud} from '../../modelos/solicitud'
     MatIconModule, 
     MatMenuModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   templateUrl: './tabla-solicitud.component.html',
   styleUrl: './tabla-solicitud.component.scss'
 })
 export class TablaSolicitudComponent implements OnInit{
-
   arraySolicitudes: Solicitud[]=[];
   input_busqueda: string = '';
 
@@ -50,6 +54,15 @@ export class TablaSolicitudComponent implements OnInit{
 
   trackBySolicitud(index: number, solicitud: any): number {
     return index;
+  }
+
+  onInput(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const newValue = inputElement.value;
+
+    if(newValue.trim() === ''){
+      this.filtrarSolicitudAfectado()
+    }
   }
 
   onKeydown(event: KeyboardEvent) {
@@ -67,7 +80,7 @@ export class TablaSolicitudComponent implements OnInit{
     }
 
     //buscar en el array de solicitudes el afectado que coincida con el input_busqueda
-    let solicitudesFiltradas = this.arraySolicitudes.filter(solicitud => solicitud.afectado.toLowerCase().includes(this.input_busqueda.toLowerCase()));
+    let solicitudesFiltradas = this.arraySolicitudes.filter(solicitud => solicitud.busqueda!.toLowerCase().includes(this.input_busqueda.toLowerCase()));
     this.arraySolicitudes = solicitudesFiltradas;
 
   }
@@ -116,33 +129,93 @@ export class TablaSolicitudComponent implements OnInit{
 
   }
 
-  actualizarArray(res: any) {
+  async actualizarArray(res: any) {
     if (res.accion === 'crear') {
       let solicitud = res.data;
       this.arraySolicitudes.push(solicitud);
-      
+      this.arraySolicitudes = await this.procesarSolicitudes(this.arraySolicitudes);
     } else if (res.accion === 'editar') {
       let solicitud = res.data;
-
-      // actualizar el array de personas con la persona editada
       let index = this.arraySolicitudes.findIndex(solicitud => solicitud.idsolicitud == res.data.idsolicitud);
       this.arraySolicitudes[index] = solicitud; 
+      this.arraySolicitudes = await this.procesarSolicitudes(this.arraySolicitudes);
     }
   }
-
 
   listarSolicitudes(){
     this.solicitudService.getSolicitudes()
     .subscribe(
       {
-        next: (solicitudes) => {
-          this.arraySolicitudes = solicitudes;
+        next: async (solicitudes) => {
+          this.arraySolicitudes = await this.procesarSolicitudes(solicitudes);
         },
         error: (error) => {
           console.error('Error al obtener solicitudes:', error);
         }
       }
     )
+  }
+
+  procesarSolicitudes(solicitudes: any[]): Promise<any[]> {
+    return new Promise((resolve, reject) => {
+      try {
+        solicitudes.forEach(solicitud => {
+          let proceso = solicitud.proceso as any[];
+          let idterminacion = proceso.find(proceso => proceso.idterminacion);
+          let idimplementacion = proceso.find(proceso => proceso.idimplementacion);
+          let idevaluacion = proceso.find(proceso => proceso.idevaluacion);
+  
+          if (idterminacion) {
+            solicitud.estado = 'Terminado';
+            solicitud.estado2 = 4;
+          } else if (idimplementacion) {
+            solicitud.estado = 'Implementación';
+            solicitud.estado2 = 3;
+          } else if (idevaluacion) {
+            solicitud.estado = 'Evaluación';
+            solicitud.estado2 = 2;
+          } else {
+            solicitud.estado = 'Pendiente';
+            solicitud.estado2 = 1;
+          }
+
+          solicitud.fecha_solicitud3 = moment(solicitud.fecha_solicitud, 'YYYY-MM-DD').format('DD/MM/YYYY');
+          solicitud.fecha_creacion3 = moment(solicitud.fecha_creacion, 'YYYY-MM-DD HH:mm:ss').format('DD/MM/YYYY HH:mm:ss');
+          solicitud.busqueda = Object.keys(solicitud).map(key => key !== 'proceso' ? solicitud[key] : '').join(' ').toLowerCase();
+
+          solicitud.fecha_solicitud2 = moment(solicitud.fecha_solicitud, 'YYYY-MM-DD').toDate();
+          solicitud.fecha_creacion2 = moment(solicitud.fecha_creacion, 'YYYY-MM-DD HH:mm:ss').toDate();
+        });
+
+        //ordena las solicitudes por codigo
+        solicitudes.sort((a, b) => {
+          return a.idsolicitud > b.idsolicitud ? 1 : -1;
+        });
+
+        this.solicitudService.actualizarJsonLocalStorage(solicitudes);
+  
+        resolve(solicitudes);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
+  openModalPorEstado(estado2: any, solicitud: any): void {
+
+    console.log(estado2);
+    console.log(solicitud);
+    //llamar al modal segun el estado, y opcion 3 para ver
+    if(estado2==2){
+      this.openModal(2,solicitud,3);
+    }
+    else if(estado2==3){
+      this.openModal(3,solicitud,3);
+    }
+    else if(estado2==4){
+      this.openModal(4,solicitud,3);
+    }
+    
   }
 
   ngOnInit() {
@@ -163,5 +236,11 @@ export class TablaSolicitudComponent implements OnInit{
   1 = Crear
   2 = Editar
   3 = Ver
+
+  Jerarquia de estados
+  1. Pendiente
+  2. Evaluación
+  3. Implementación
+  4. Terminado 
 
 */
