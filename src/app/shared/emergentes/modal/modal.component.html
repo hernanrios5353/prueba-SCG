@@ -4,13 +4,13 @@
 }
 
 @if (divFormEvaluacion){
-    <app-frm-evaluacion></app-frm-evaluacion>
+    <app-frm-evaluacion [Input_data]="_data" (acciones)="recibirAcciones($event)"></app-frm-evaluacion>
 }
 
 @if (divFormImplementacion){
-    <app-frm-implementacion></app-frm-implementacion>
+    <app-frm-implementacion [Input_data]="_data" (acciones)="recibirAcciones($event)"></app-frm-implementacion>
 }
 
 @if (divFormTerminacion){
-    <app-frm-terminacion></app-frm-terminacion>
+    <app-frm-terminacion [Input_data]="_data" (acciones)="recibirAcciones($event)"></app-frm-terminacion>
 }

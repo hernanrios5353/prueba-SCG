@@ -1,0 +1,75 @@
+.example-button-toggle-label {
+    display: inline-block;
+    margin: 16px;
+}
+
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}
+
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: white !important;
+}
+
+/* Elimina la línea inferior del input dentro del mat-form-field */
+
+.custom-input {
+  color: black;
+  background-color: transparent;
+  border: none; /* Removes all borders */
+  border-bottom: none; /* Removes only the bottom border */
+  padding-bottom: 8px;
+}
+
+textarea {
+  height: 85px !important;
+  border: none;
+  resize: none;
+  outline: none; /* Elimina el borde de enfoque */
+}
+
+textarea:focus {
+  outline: none; /* Elimina el borde de enfoque */
+}
+
+
+
+@media screen and (min-width: 600px) {
+
+
+  .paddingModal{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .paddingModal{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 20px;
+  }
+
+  .paddingTitulo{
+    padding-left: 10px;
+  }
+}
+
+.titulo{
+    font-size: 18px;
+    font-weight: 500;
+}

@@ -76,7 +76,7 @@ export class FrmSolicitudComponent implements OnInit{
           return
         }
       
-        this.F_editar_persona(this.frm_solicitud);
+        this.F_editar_solicitud(this.frm_solicitud);
       }
       else if (!this.frm_solicitud.value.idsolicitud){
         console.log('crear solicitud');
@@ -96,7 +96,7 @@ export class FrmSolicitudComponent implements OnInit{
     }
   }
 
-  F_editar_persona(frm_solicitud: FormGroup){
+  F_editar_solicitud(frm_solicitud: FormGroup){
 
     console.log(frm_solicitud.value);
     let fecha_solicitud = moment(frm_solicitud.value.fecha_solicitud, 'DD/MM/YYYY').format('YYYY-MM-DD');
@@ -206,9 +206,9 @@ export class FrmSolicitudComponent implements OnInit{
       const fecha_solicitud = moment(frm_solicitud.value.fecha_solicitud, 'DD/MM/YYYY');
       const fechaActual = moment();
       if (!fecha_solicitud.isValid()) {
-        mensaje = 'La fecha de nacimiento no es válida.';
+        mensaje = 'La fecha de solicitud no es válida.';
       } else if (fecha_solicitud.isAfter(fechaActual)) {
-        mensaje = 'La fecha de nacimiento no puede ser mayor a la fecha actual.';
+        mensaje = 'La fecha de solicitud no puede ser mayor a la fecha actual.';
       }
 
       resolve(mensaje);

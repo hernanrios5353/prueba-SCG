@@ -66,6 +66,7 @@ export class ModalComponent implements OnInit{
       }
       else if(accion == 3){
         console.log('Ver solicitud');
+        this._data = this.objeto;
       }
 
       this.divFormSolicitud = true;
@@ -73,14 +74,56 @@ export class ModalComponent implements OnInit{
     }
     else if(formulario==2){
       console.log('Formulario de evaluación');
+
+      if(accion == 1){
+        console.log('Creación de evaluación');
+        this._data = this.objeto;
+      }
+      else if(accion == 2){
+        console.log('Edición de evaluación');
+        this._data = this.objeto;
+      }
+      else if(accion == 3){
+        console.log('Ver evaluación');
+        this._data = this.objeto;
+      }
+
       this.divFormEvaluacion = true;
     }
     else if(formulario==3){
       console.log('Formulario de implementación');
+      if(accion == 1){
+        console.log('Creación de implementación');
+        this._data = this.objeto;
+      }
+      else if(accion == 2){
+        console.log('Edición de implementación');
+        this._data = this.objeto;
+      }
+      else if(accion == 3){
+        console.log('Ver implementación');
+        this._data = this.objeto;
+      }
+
       this.divFormImplementacion = true;
     }
     else if(formulario==4){
       console.log('Formulario de terminación'); 
+
+      if(accion == 1){
+        console.log('Creación de solicitud');
+        this._data = this.objeto;
+      }
+      else if(accion == 2){
+        console.log('Edición de solicitud');
+        this._data = this.objeto;
+      }
+      else if(accion == 3){
+        console.log('Ver solicitud');
+        this._data = this.objeto;
+      }
+
+
       this.divFormTerminacion = true;
     }
 

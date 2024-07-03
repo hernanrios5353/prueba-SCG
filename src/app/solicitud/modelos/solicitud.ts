@@ -19,14 +19,25 @@ export interface Proceso {
 
 export interface Evaluacion {
     idevaluacion: string;
+    idsolicitud: string;
     fecha_evaluacion: string;
-    evaluacion: string;
+    solicitud_evaluacion: string;
     fecha_creacion: string;
 }
 
 export interface Implementacion {
     idimplementacion: string;
+    idsolicitud: string;
     fecha_implementacion: string;
     implementacion: string;
+    fecha_creacion: string;
+}
+
+export interface Terminacion {
+    idterminacion: string;
+    idsolicitud: string;
+    fecha_terminacion: string;
+    terminacion: string;
+    estado: 'Satisfactoria' | 'Cancelación';
     fecha_creacion: string;
 }
