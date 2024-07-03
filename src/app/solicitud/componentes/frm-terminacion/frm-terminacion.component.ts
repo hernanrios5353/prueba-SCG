@@ -375,6 +375,7 @@ export class FrmTerminacionComponent implements OnInit{
       this.titulo = 'Ver terminación';
       let procesos = data.proceso as any[];
       let terminacion = procesos.find(item => item.idterminacion !== undefined);
+      console.log(terminacion);
 
       this.set_frm_terminacion(terminacion);
       this.frm_terminacion.disable();

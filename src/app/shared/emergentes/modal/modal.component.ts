@@ -46,87 +46,49 @@ export class ModalComponent implements OnInit{
     }
   }
   
-  ngOnInit(): void {
-
+  ngOnInit() {
     console.log(this.objeto);
-
+  
     let formulario = this.objeto.form;
     let accion = this.objeto.opc;
-
-    if(formulario==1){
-      console.log('Formulario de solicitud');
-
-      
-      if(accion == 1){
-        console.log('Creación de solicitud');
-      }
-      else if(accion == 2){
-        console.log('Edición de solicitud');
-        this._data = this.objeto;
-      }
-      else if(accion == 3){
-        console.log('Ver solicitud');
-        this._data = this.objeto;
-      }
-
-      this.divFormSolicitud = true;
-
+  
+    switch (formulario) {
+      case 1:
+        console.log('Formulario de solicitud');
+        this.divFormSolicitud = true;
+        break;
+      case 2:
+        console.log('Formulario de evaluación');
+        this.divFormEvaluacion = true;
+        break;
+      case 3:
+        console.log('Formulario de implementación');
+        this.divFormImplementacion = true;
+        break;
+      case 4:
+        console.log('Formulario de terminación');
+        this.divFormTerminacion = true;
+        break;
+      default:
+        console.log('Formulario no reconocido');
     }
-    else if(formulario==2){
-      console.log('Formulario de evaluación');
-
-      if(accion == 1){
-        console.log('Creación de evaluación');
+  
+    switch (accion) {
+      case 1:
+        console.log('Creación');
         this._data = this.objeto;
-      }
-      else if(accion == 2){
-        console.log('Edición de evaluación');
+        break;
+      case 2:
+        console.log('Edición');
         this._data = this.objeto;
-      }
-      else if(accion == 3){
-        console.log('Ver evaluación');
+        break;
+      case 3:
+        console.log('Ver');
         this._data = this.objeto;
-      }
-
-      this.divFormEvaluacion = true;
+        break;
+      default:
+        console.log('Acción no reconocida');
     }
-    else if(formulario==3){
-      console.log('Formulario de implementación');
-      if(accion == 1){
-        console.log('Creación de implementación');
-        this._data = this.objeto;
-      }
-      else if(accion == 2){
-        console.log('Edición de implementación');
-        this._data = this.objeto;
-      }
-      else if(accion == 3){
-        console.log('Ver implementación');
-        this._data = this.objeto;
-      }
-
-      this.divFormImplementacion = true;
-    }
-    else if(formulario==4){
-      console.log('Formulario de terminación'); 
-
-      if(accion == 1){
-        console.log('Creación de solicitud');
-        this._data = this.objeto;
-      }
-      else if(accion == 2){
-        console.log('Edición de solicitud');
-        this._data = this.objeto;
-      }
-      else if(accion == 3){
-        console.log('Ver solicitud');
-        this._data = this.objeto;
-      }
-
-
-      this.divFormTerminacion = true;
-    }
-
   }
 
 }

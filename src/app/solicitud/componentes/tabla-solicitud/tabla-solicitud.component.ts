@@ -12,6 +12,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatDialog} from '@angular/material/dialog';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 // Librerias
 import moment from 'moment';
@@ -37,7 +38,8 @@ import {Solicitud} from '../../modelos/solicitud'
     MatMenuModule,
     MatDialogModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    MatTooltipModule
   ],
   templateUrl: './tabla-solicitud.component.html',
   styleUrl: './tabla-solicitud.component.scss'
@@ -242,5 +244,23 @@ export class TablaSolicitudComponent implements OnInit{
   2. Evaluación
   3. Implementación
   4. Terminado 
+
+  Jerarquia de colores de estado
+
+  Pendiente: Amarillo
+  Representa un estado inicial o de espera, llamando la atención de que algo necesita ser atendido.
+  Código de color: #FFC107
+
+  Evaluación: Azul
+  Sugiere un estado de análisis o revisión, transmitiendo tranquilidad y enfoque.
+  Código de color: #2196F3
+
+  Implementación: Naranja
+  Indica un estado activo y en progreso, denotando que algo está en ejecución.
+  Código de color: #FF9800
+  
+  Terminación: Verde
+  Representa un estado de finalización o éxito, indicando que la solicitud ha sido completada.
+  Código de color: #4CAF50
 
 */
