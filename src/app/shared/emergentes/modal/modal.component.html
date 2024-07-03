@@ -1,0 +1,16 @@
+
+@if (divFormSolicitud){
+    <app-frm-solicitud [Input_data]="_data" (acciones)="recibirAcciones($event)"></app-frm-solicitud>
+}
+
+@if (divFormEvaluacion){
+    <app-frm-evaluacion></app-frm-evaluacion>
+}
+
+@if (divFormImplementacion){
+    <app-frm-implementacion></app-frm-implementacion>
+}
+
+@if (divFormTerminacion){
+    <app-frm-terminacion></app-frm-terminacion>
+}

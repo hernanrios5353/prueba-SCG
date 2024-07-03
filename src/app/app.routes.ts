@@ -1,3 +1,8 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+import { SolicitudComponent } from '../app/solicitud/componentes/solicitud/solicitud.component';
+
+export const routes: Routes = [
+
+    { path: 'solicitud', component: SolicitudComponent },
+];

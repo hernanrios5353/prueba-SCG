@@ -1,1 +1,233 @@
-/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.anularPaddingMargin
+{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.full-width
+{
+    width: 100% !important;
+}
+
+.snackbar {
+    background-color: #ff4d4d !important; /* Set your desired background color */
+}
+
+.mat-mdc-snack-bar-container {
+    &.blue-snackbar {
+      --mdc-snackbar-container-color: #5a86c0;
+      --mat-mdc-snack-bar-button-color: #fff;
+      --mdc-snackbar-supporting-text-color: #fff;
+    }
+}
+
+
+
+.example-toolbar {
+    background-color: #2a93c9; /* Cambia el color de fondo a rojo */
+    color: #dce9ec; /* Cambia el color del texto a blanco */
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.gradient-background {
+    height: 100vh; /* El div ocupa todo el alto de la pantalla */
+    background: linear-gradient(to bottom, #0a5d83 , #439dc7, #43b2e6); /* Color degradado de arriba hacia abajo */
+}
+
+.custom-menu {
+    background-color: #0b415a !important;   
+}
+
+.mat-bottom-sheet-container {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+
+/************************************************* Estilos para las vistas *****************************/
+.titulo-principal-vista{
+    margin-top: 12px !important; 
+    font-weight: 500 !important;
+}
+
+/************************************************* Fonts ***********************************************/
+.font-color-blue{
+    color: #01283a !important;
+}
+
+.font-color-rose{
+    color: #aa2b4b !important;
+}
+
+.font-color-red{
+    color: #b80101 !important;
+}
+
+/************************************************* Inputs ***********************************************/
+input:focus {
+    outline: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.div-input-Login {
+    border: rgb(184, 184, 184) 1px solid; 
+    border-radius: 10px; 
+    padding-left: 14px; 
+    padding-right: 14px;
+    margin-bottom: 20px;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+
+.input-Login {
+    outline: none !important; 
+    border: none; 
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    box-shadow: none;
+    font-size: 12px;
+}
+
+.input-form-modal{
+    padding-top: 0px !important;
+    height: 20px !important;
+    background-color: transparent; 
+    border: none !important; 
+    border-bottom: 1px solid transparent !important;
+    padding-bottom: 8px !important;
+}
+
+.input-Login:-webkit-autofill,
+.input-Login:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 30px white inset !important; /* Ajusta este valor según sea necesario */
+    color: rgb(33, 88, 192) !important; 
+}
+
+/************************************************** FormControl ***********************************************/
+.control-error {
+    color: #b80101;
+    font-size: 12px;
+}
+
+
+/************************************************** Botones *********************************************/
+.btn-formato-blue {
+    background-color: #7397b6 !important;
+    color: white !important;
+    border: none !important;
+    text-transform: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    height: 30px !important;
+}
+
+.btn-formato-blue:hover {
+    background-color: rgb(83, 110, 185) !important;
+    color: inherit !important;
+    border-color: transparent !important;
+    color: white !important;
+    border-radius: 5px !important;
+}
+
+.btn-formato-red {
+    background-color: #c95149 !important;
+    color: white !important;
+    border: none !important;
+    text-transform: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    height: 30px !important;
+}
+
+.btn-formato-red:hover {
+    background-color: rgb(185, 22, 22) !important;
+    color: inherit !important;
+    border-color: transparent !important;
+    color: white !important;
+    border-radius: 5px !important;
+}
+
+
+.btn.btn-formato:focus,
+.btn.btn-formato:active {
+    background-color: inherit; /* Restablece el color de fondo */
+    box-shadow: none; /* Elimina la sombra */
+    outline: none; /* Elimina el contorno */
+    border: none; /* Elimina el borde */
+}
+
+@media screen and (min-width: 600px) {
+  
+    .btn-formato-red{
+        height: 35px !important;
+    }
+ 
+    .btn-formato-blue{
+        height: 35px !important;
+    } 
+}
+
+@media screen and (max-width: 600px) {
+    .btn-formato-red{
+        height: 30px !important;
+     }
+ 
+     .btn-formato-blue{
+         height: 30px !important;
+     } 
+
+}
+
+/************************************************** Modal *********************************************/
+
+.titulo-modal-blue{
+    color: rgb(33, 88, 192);
+}
+
+.titulo-modal-rose{
+    color: #aa2b4b;
+}
+
+.indicador-dato-obligatorio{
+    padding-top: 10px;
+    margin-top: 10px;
+    color: #b80101;
+    font-size: 16px
+}
+
+
+/************************************************** Backgrounds ****************************************/
+.background-blue{
+    background-color: #01283a;
+}
+
+.background-rose{
+    background-color: #aa2b4b;
+}
+
+.mat-mdc-text-field-wrapper {
+    cursor: pointer;
+    padding: 0;
+}
+.mat-mdc-select-value-text {
+    white-space: nowrap;
+    color: black;
+}
+
+/*************************************************** Expansion panel ******************************************/
+.mat-expansion-panel-rose {
+    background-color: #aa2b4b !important;
+}
+
+.mat-expansion-panel-blue {
+    background-color: #154a63 !important;
+}
+

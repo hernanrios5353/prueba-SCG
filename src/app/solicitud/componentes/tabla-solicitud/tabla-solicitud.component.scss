@@ -1,0 +1,122 @@
+
+
+
+section {
+  display: table;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+
+@media screen and (min-width: 600px) {
+
+  
+}
+
+::-webkit-scrollbar {
+  width: 12px; /* Ancho del scroll */
+}
+
+/* Estilo del thumb (la parte que se arrastra) */
+::-webkit-scrollbar-thumb {
+  background-color: #0a3c53 ; /* Color del scroll */
+  border-radius: 3px; /* Borde redondeado */
+  cursor: pointer;
+}
+
+/* Estilo del track (la parte del fondo) */
+::-webkit-scrollbar-track {
+  background-color: #115474; /* Color de fondo del scroll */
+  cursor: pointer;
+}
+
+
+.data-table-head{
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    font-size: 14.5px !important;
+    padding-left: 0px;
+    text-align: left;
+}
+
+.data-table-body{
+    color: rgb(255, 255, 255);
+    // font-weight: 500;
+    font-size: 14.5px !important;
+    padding-left: 0px;
+    padding-right: 15px;
+    padding-top: 10px;
+    text-align: left;
+}
+
+.background-tabla {
+    background-color: #b7cfeb;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.font-color {
+    color: rgb(0, 0, 0);
+}
+
+.custom-table-width {
+    width: auto;
+}
+  
+/* Personalizacion de campos head de tabla */
+th.data-table-head.font-color:nth-child(1) {
+    width: auto;
+}
+
+th.data-table-head.font-color:nth-child(2) {
+
+    width: auto;
+}
+
+th.data-table-head.font-color:nth-child(3) {
+    width: 15%;
+}
+
+th.data-table-head.font-color:nth-child(4) {
+    width: 40%;
+}
+
+th.data-table-head.font-color:nth-child(5) {
+    width: 10%;
+}
+
+th.data-table-head.font-color:nth-child(6) {
+    width: 10%;
+    text-align: center;
+}
+
+/* Personalizacion de campos td de tabla */
+
+td.data-table-body.font-color:nth-child(6) {
+    text-align: center;
+}
