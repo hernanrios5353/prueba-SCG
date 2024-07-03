@@ -9,18 +9,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatLabel } from '@angular/material/form-field';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
-import { MatAutocomplete } from '@angular/material/autocomplete';
+
+// librerias
+import moment from 'moment';
 
 // servicios
 import { SolicitudService } from '../../servicios/solicitud.service';
 
 // modelos
 import { Solicitud } from '../../modelos/solicitud';
-
-import moment from 'moment';
-
-
-
 
 @Component({
   selector: 'app-frm-solicitud',
@@ -179,36 +176,16 @@ export class FrmSolicitudComponent implements OnInit{
         if (objeto.hasOwnProperty(key) && !objeto[key]) {
 
           switch (key) {
-            case "tpoDoc":
-              nomVariable = "Tipo de documento";
+            case "solicitud":
+              nomVariable = "Solicitud";
               break;
-            case "perDni":
-              nomVariable = "Documento";
+            case "fecha_solicitud":
+              nomVariable = "Fecha de solicitud";
               break;
-            case "perApeMat":
-              nomVariable = "Apellido materno";
+            case "afectado":
+              nomVariable = "Afectado";
               break;
-            case "perApePat":
-              nomVariable = "Apellido paterno";
-              break;
-            case "perNom":
-              nomVariable = "Nombres";
-              break;
-            case "perSex":
-              nomVariable = "Sexo";
-              break;
-            case "perFchNac":
-              nomVariable = "Fecha de nacimiento";
-              break;
-            case "perDepartamento":
-              nomVariable = "Departamento";
-              break;
-            case "perProvincia":
-              nomVariable = "Provincia";
-              break;
-            case "perDistrito":
-              nomVariable = "Distrito";
-              break;
+          
             default:
               continue;
           }

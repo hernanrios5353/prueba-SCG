@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:Admin-solicitudes": "node dist/admin-solicitudes/server/server.mjs"
+    "serve:ssr:Admin-solicitudes": "node dist/admin-solicitudes/server/server.mjs",
+    "commit": "git add . && git commit -m \"autocommit\" && git push"
   },
   "private": true,
   "dependencies": {
