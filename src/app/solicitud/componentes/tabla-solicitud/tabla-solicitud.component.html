@@ -9,7 +9,7 @@
                 border: rgb(255, 255, 255) solid 2px; border-radius: 8px;height: 40px;margin-top: 10px;padding-bottom: 8px;">
                 <input 
                     type="text" 
-                    placeholder="🔎 Digite y luego presione 'Enter' "
+                    placeholder="🔎 Digite y luego presione la tecla 'Enter' "
                     [(ngModel)]="input_busqueda"
                     (input)="onInput($event)"
                     (keydown)="onKeydown($event)"
@@ -49,7 +49,8 @@
                     <td class="data-table-body font-color">{{solicitud.solicitud}}</td>
                     <td class="data-table-body font-color">{{solicitud.afectado}}</td>
                     <td class="data-table-body font-color">{{solicitud.proceso.length}}</td>
-                    <td class="data-table-body font-color" (click)="openModalPorEstado(solicitud.estado2, solicitud)">{{solicitud.estado}}</td>
+                    <td class="data-table-body font-color" (click)="openModalPorEstado(solicitud.estado2, solicitud)">
+                        <button class="btn-formato-red">{{solicitud.estado}}</button></td>
                     <td class="data-table-body" style="padding-right: 2px; text-align: right;">
                         <a mat-icon-button style="cursor: pointer;">
                             <mat-icon mat-icon-button [matMenuTriggerFor]="menu" style="color: rgb(0, 0, 0);">more_vert</mat-icon>
