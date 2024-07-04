@@ -57,14 +57,15 @@ export class FrmEvaluacionComponent  implements OnInit{
     this.frm_evaluacion = this.formBuilder.group({
       idevaluacion: [''],
       idsolicitud: [''],
-      fecha_evaluacion: [moment().format('DD-MM-YYYY'), Validators.required],
+      fecha_evaluacion: [moment().format('DD/MM/YYYY'), Validators.required],
       solicitud_evaluacion: ['', Validators.required],
-      fecha_creacion: [moment().format('YYYY-MM-DD HH:mm:ss'), Validators.required],
+      fecha_creacion: [moment().format('DD/MM/YYYY')],
     });
   }
 
   async onSubmit() {
-
+    console.log('Errores del formulario:', this.frm_evaluacion.errors);
+    console.log(this.frm_evaluacion.valid);
     if (this.frm_evaluacion.valid) {
 
       // evalular si  contiene el _id para editar o crear
@@ -90,6 +91,7 @@ export class FrmEvaluacionComponent  implements OnInit{
       }
     } else {
 
+      console.log(this.frm_evaluacion.value);
       let missingFieldName = await this.buscarCampoVacio(this.frm_evaluacion.value);
       if(missingFieldName !== null)this.openSnackBar(missingFieldName);
     }
@@ -319,7 +321,7 @@ export class FrmEvaluacionComponent  implements OnInit{
       idsolicitud: data.idsolicitud,
       fecha_evaluacion: moment(data.fecha_evaluacion).format('DD/MM/YYYY'),
       solicitud_evaluacion: data.solicitud_evaluacion,
-      fecha_creacion: data.fecha_creacion
+      fecha_creacion: moment(data.fecha_creacion).format('DD/MM/YYYY'),
     });
   }
 

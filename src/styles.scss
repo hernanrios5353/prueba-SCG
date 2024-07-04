@@ -147,8 +147,10 @@ textarea:disabled {
     border-radius: 5px !important;
 }
 
-.btn-formato-red {
-    background-color: #c95149 !important;
+
+// botones de estado de solicitud
+.btn-formato-estado-blue {
+    background-color: #2c64ff !important;
     color: white !important;
     border: none !important;
     text-transform: none !important;
@@ -158,8 +160,66 @@ textarea:disabled {
     height: 30px !important;
 }
 
-.btn-formato-red:hover {
-    background-color: rgb(185, 22, 22) !important;
+.btn-formato-estado-blue:hover {
+    background-color: #2650c2 !important;
+    color: inherit !important;
+    border-color: transparent !important;
+    color: white !important;
+    border-radius: 5px !important;
+}
+
+
+.btn-formato-estado-yellow {
+    background-color: #384d61 !important;
+    color: white !important;
+    border: none !important;
+    text-transform: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    height: 30px !important;
+}
+
+.btn-formato-estado-yellow:hover {
+    background-color: #253a4e !important;
+    color: inherit !important;
+    border-color: transparent !important;
+    color: white !important;
+    border-radius: 5px !important;
+}
+
+.btn-formato-estado-orange {
+    background-color: #e48c08 !important;
+    color: white !important;
+    border: none !important;
+    text-transform: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    height: 30px !important;
+}
+
+.btn-formato-estado-orange:hover {
+    background-color: #af6a01 !important;
+    color: inherit !important;
+    border-color: transparent !important;
+    color: white !important;
+    border-radius: 5px !important;
+}
+
+.btn-formato-estado-green {
+    background-color: #35a139 !important;
+    color: white !important;
+    border: none !important;
+    text-transform: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    height: 30px !important;
+}
+
+.btn-formato-estado-green:hover {
+    background-color: #218124 !important;
     color: inherit !important;
     border-color: transparent !important;
     color: white !important;

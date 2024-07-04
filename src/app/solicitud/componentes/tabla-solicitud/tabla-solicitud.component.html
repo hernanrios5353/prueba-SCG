@@ -27,7 +27,7 @@
     
     <div style="max-height: 600px; overflow-y: auto;">
         <table class="responsive-table bordered">
-            <thead class="color-header-tabla" style="border-radius: 8px !important;position: sticky; top: 0;">
+            <thead class="header-tabla">
                 <tr>
                 <th class="data-table-head font-color custom-table-width">Codigo</th>
                 <th class="data-table-head font-color custom-table-width">Fecha de solicitud</th>
@@ -35,7 +35,7 @@
                 <th class="data-table-head font-color custom-table-width">Solicitud</th>
                 <th class="data-table-head font-color custom-table-width">Afectado</th>
                 <th class="data-table-head font-color custom-table-width">Procesos</th>
-                <th class="data-table-head font-color custom-table-width">Estado</th>
+                <th class="data-table-head font-color custom-table-width">Estado actual</th>
                 <th class="data-table-head font-color custom-table-width" style="width: 60px;"></th>
                 </tr>
             </thead>
@@ -50,7 +50,8 @@
                     <td class="data-table-body font-color">{{solicitud.afectado}}</td>
                     <td class="data-table-body font-color">{{solicitud.proceso.length}}</td>
                     <td class="data-table-body font-color" (click)="openModalPorEstado(solicitud.estado2, solicitud)">
-                        <button class="btn-formato-red">{{solicitud.estado}}</button></td>
+                        <button [class]="obtenerClaseBoton(solicitud.estado2!)">{{solicitud.estado}}</button>
+                    </td>
                     <td class="data-table-body" style="padding-right: 2px; text-align: right;">
                         <a mat-icon-button style="cursor: pointer;">
                             <mat-icon mat-icon-button [matMenuTriggerFor]="menu" style="color: rgb(0, 0, 0);">more_vert</mat-icon>

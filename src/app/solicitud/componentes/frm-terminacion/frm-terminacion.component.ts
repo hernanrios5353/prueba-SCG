@@ -74,8 +74,8 @@ export class FrmTerminacionComponent implements OnInit{
       idsolicitud: [''],
       fecha_terminacion: [moment().format('DD-MM-YYYY'), Validators.required],
       terminacion: ['', Validators.required],
-      estado: ['', Validators.required],
-      fecha_creacion: [moment().format('YYYY-MM-DD HH:mm:ss'), Validators.required],
+      estado: ['1', Validators.required],
+      fecha_creacion: [moment().format('YYYY-MM-DD'), Validators.required],
     });
   }
 
@@ -350,7 +350,7 @@ export class FrmTerminacionComponent implements OnInit{
       fecha_terminacion: moment(data.fecha_terminacion).format('DD/MM/YYYY'),
       terminacion: data.terminacion,
       estado: data.estado,
-      fecha_creacion: data.fecha_creacion,
+      fecha_creacion: moment(data.fecha_creacion).format('DD/MM/YYYY'),
     });
   }
 

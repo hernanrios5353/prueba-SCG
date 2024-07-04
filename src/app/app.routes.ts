@@ -5,4 +5,9 @@ import { SolicitudComponent } from '../app/solicitud/componentes/solicitud/solic
 export const routes: Routes = [
 
     { path: 'solicitud', component: SolicitudComponent },
+    {
+        path: '', redirectTo: '/solicitud', pathMatch: 'full'
+    },
+    { path: '**', redirectTo: '/solicitud' }
+
 ];

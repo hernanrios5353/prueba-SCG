@@ -59,7 +59,7 @@ export class FrmImplementacionComponent  implements OnInit{
       idsolicitud: [''],
       fecha_implementacion: [moment().format('DD-MM-YYYY'), Validators.required],
       implementacion: ['', Validators.required],
-      fecha_creacion: [moment().format('YYYY-MM-DD HH:mm:ss'), Validators.required],
+      fecha_creacion: [moment().format('YYYY-MM-DD'), Validators.required],
     });
   }
 
@@ -329,9 +329,9 @@ export class FrmImplementacionComponent  implements OnInit{
     this.frm_implementacion.setValue({
       idimplementacion: data.idimplementacion,
       idsolicitud: data.idsolicitud,
-      fecha_implementacion: data.fecha_implementacion,
+      fecha_implementacion:  moment(data.fecha_implementacion).format('DD/MM/YYYY'),
       implementacion: data.implementacion,
-      fecha_creacion: data.fecha_creacion,
+      fecha_creacion:  moment(data.fecha_creacion).format('DD/MM/YYYY'),
     });
   }
 

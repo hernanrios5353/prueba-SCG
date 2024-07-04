@@ -47,6 +47,7 @@ import {Solicitud} from '../../modelos/solicitud'
 export class TablaSolicitudComponent implements OnInit{
   arraySolicitudes: Solicitud[]=[];
   input_busqueda: string = '';
+  load:boolean = false;
 
   constructor(
     private solicitudService: SolicitudService,
@@ -104,8 +105,6 @@ export class TablaSolicitudComponent implements OnInit{
       data:solicitud
     }
 
-    console.log(data);
-
     let width =window.innerWidth;
 
     if(width<400){
@@ -149,7 +148,13 @@ export class TablaSolicitudComponent implements OnInit{
     .subscribe(
       {
         next: async (solicitudes) => {
-          this.arraySolicitudes = await this.procesarSolicitudes(solicitudes);
+          if(!this.load) {
+            this.arraySolicitudes = await this.procesarSolicitudes(solicitudes);
+          }
+          else {
+            this.arraySolicitudes = solicitudes;
+            this.load = true;
+          }
         },
         error: (error) => {
           console.error('Error al obtener solicitudes:', error);
@@ -184,16 +189,13 @@ export class TablaSolicitudComponent implements OnInit{
           solicitud.fecha_solicitud3 = moment(solicitud.fecha_solicitud, 'YYYY-MM-DD').format('DD/MM/YYYY');
           solicitud.fecha_creacion3 = moment(solicitud.fecha_creacion, 'YYYY-MM-DD HH:mm:ss').format('DD/MM/YYYY HH:mm:ss');
           solicitud.busqueda = Object.keys(solicitud).map(key => key !== 'proceso' ? solicitud[key] : '').join(' ').toLowerCase();
-
+          
           solicitud.fecha_solicitud2 = moment(solicitud.fecha_solicitud, 'YYYY-MM-DD').toDate();
           solicitud.fecha_creacion2 = moment(solicitud.fecha_creacion, 'YYYY-MM-DD HH:mm:ss').toDate();
         });
 
         //ordena las solicitudes por codigo
-        solicitudes.sort((a, b) => {
-          return a.idsolicitud > b.idsolicitud ? 1 : -1;
-        });
-
+        solicitudes.sort((a, b) => { return Number(a.idsolicitud) - Number(b.idsolicitud); });
         this.solicitudService.actualizarJsonLocalStorage(solicitudes);
   
         resolve(solicitudes);
@@ -217,7 +219,25 @@ export class TablaSolicitudComponent implements OnInit{
     else if(estado2==4){
       this.openModal(4,solicitud,3);
     }
+    else{
+      this.openModal(2,solicitud,1);
+    }
     
+  }
+
+  obtenerClaseBoton(estado: number): string {
+    switch (estado) {
+      case 1:
+        return 'btn-formato-estado-yellow';
+      case 2:
+        return 'btn-formato-estado-blue';
+      case 3:
+        return 'btn-formato-estado-orange';
+      case 4:
+        return 'btn-formato-estado-green';
+      default:
+        return 'btn-default';
+    }
   }
 
   ngOnInit() {

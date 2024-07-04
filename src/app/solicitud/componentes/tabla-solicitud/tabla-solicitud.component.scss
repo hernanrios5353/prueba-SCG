@@ -44,14 +44,14 @@ section {
 
 /* Estilo del thumb (la parte que se arrastra) */
 ::-webkit-scrollbar-thumb {
-  background-color: #0a3c53 ; /* Color del scroll */
+  background-color: #49758a ; /* Color del scroll */
   border-radius: 3px; /* Borde redondeado */
   cursor: pointer;
 }
 
 /* Estilo del track (la parte del fondo) */
 ::-webkit-scrollbar-track {
-  background-color: #115474; /* Color de fondo del scroll */
+  background-color: #d1dadd; /* Color de fondo del scroll */
   cursor: pointer;
 }
 
@@ -79,6 +79,17 @@ section {
     border-radius: 10px;
     padding: 10px;
 }
+
+.header-tabla {
+  background-color: #b3c9e4;
+  border-radius: 10px;
+  padding: 10px;
+  border-radius: 8px !important;
+  position: sticky; 
+  top: 0;
+  z-index: 99;
+}
+
 
 .font-color {
     color: rgb(0, 0, 0);
@@ -119,6 +130,7 @@ th.data-table-head.font-color:nth-child(6) {
     width: 10%;
     text-align: center;
 }
+
 
 /* Personalizacion de campos td de tabla */
 td.data-table-body.font-color:nth-child(1) {

@@ -37,7 +37,21 @@
                             (input)="onInputFecha($event)"
                             (keydown)="onKeyDown($event)">
                     </mat-form-field>
+
+                    <mat-form-field class="col l6 m6 s12" >
+                        <mat-label style="padding: 10px;">Fecha de creación</mat-label>
+                        <input 
+                            readonly
+                            style="padding: 10px;"
+                            matInput 
+                            formControlName="fecha_creacion"  
+                            name="fecha_creacion" 
+                            id="fecha_creacion" 
+                            maxlength="10">
+                    </mat-form-field>
                 </div>
+
+                
 
                 <!-- botones-->
                 <div class="col l12 m12 s12"

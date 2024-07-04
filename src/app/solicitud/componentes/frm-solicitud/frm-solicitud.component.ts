@@ -56,9 +56,9 @@ export class FrmSolicitudComponent implements OnInit{
   ) {
     this.frm_solicitud = this.formBuilder.group({
       idsolicitud: [''],
-      fecha_solicitud: [moment().format('DD-MM-YYYY'), Validators.required],
+      fecha_solicitud: [moment().format('DD/MM/YYYY'), Validators.required],
       solicitud: ['', Validators.required],
-      fecha_creacion: [moment().format('YYYY-MM-DD HH:mm:ss'), Validators.required],
+      fecha_creacion: [moment().format('DD/MM/YYYY')],
       afectado: ['', Validators.required],
     });
   }
@@ -288,7 +288,7 @@ export class FrmSolicitudComponent implements OnInit{
       idsolicitud: data.idsolicitud,
       fecha_solicitud: moment(data.fecha_solicitud).format('DD/MM/YYYY'),
       solicitud: data.solicitud,
-      fecha_creacion: data.fecha_creacion,
+      fecha_creacion: moment(data.fecha_creacion).format('DD/MM/YYYY'),
       afectado: data.afectado,
     });
   }
