@@ -158,3 +158,18 @@ td.data-table-body.font-color:nth-child(7) {
   color: white;
 }
 
+.icon-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px; /* Adjust spacing as needed */
+}
+
+.icon-container img {
+  max-width: 30px;
+  max-height: 30px;
+}

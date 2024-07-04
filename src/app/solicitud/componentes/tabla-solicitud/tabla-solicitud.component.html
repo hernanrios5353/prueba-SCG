@@ -3,81 +3,112 @@
 
     <div class="row col l12 m12 s12 right-align" style="padding-bottom: 0px;margin-bottom: 10px;">
 
-        <div class="col l9 m8 s12" >    
-            <div class="col l12 m12 s12" style="
+        <div class="col l9 m8 s12">
+            <div class="col l12 m12 s12"
+                style="
                 background-color: rgb(255, 255, 255);
                 border: rgb(255, 255, 255) solid 2px; border-radius: 8px;height: 40px;margin-top: 10px;padding-bottom: 8px;">
-                <input 
-                    type="text" 
-                    placeholder="🔎 Digite y luego presione la tecla 'Enter' "
-                    [(ngModel)]="input_busqueda"
-                    (input)="onInput($event)"
-                    (keydown)="onKeydown($event)"
+                <input type="text" placeholder="🔎 Digite y luego presione la tecla 'Enter' "
+                    [(ngModel)]="input_busqueda" (input)="onInput($event)" (keydown)="onKeydown($event)"
                     style="color: rgb(0, 0, 0); background-color: transparent; border: none; border-bottom: 1px solid transparent;padding-bottom: 8px;">
-    
+
             </div>
         </div>
-        
-    
-        <div class="col l3 m4 s12" style="margin-top: 14px;">  
+
+
+        <div class="col l3 m4 s12" style="margin-top: 14px;">
             <a class="btn btn-formato-blue" (click)="openModal(1,null,0)">Crear solicitud</a>
         </div>
-    
+
     </div>
-    
+
     <div style="max-height: 600px; overflow-y: auto;">
         <table class="responsive-table bordered">
             <thead class="header-tabla">
                 <tr>
-                <th class="data-table-head font-color custom-table-width">Codigo</th>
-                <th class="data-table-head font-color custom-table-width">Fecha de solicitud</th>
-                <th class="data-table-head font-color custom-table-width">Fecha de creación</th>
-                <th class="data-table-head font-color custom-table-width">Solicitud</th>
-                <th class="data-table-head font-color custom-table-width">Afectado</th>
-                <th class="data-table-head font-color custom-table-width">Procesos</th>
-                <th class="data-table-head font-color custom-table-width">Estado actual</th>
-                <th class="data-table-head font-color custom-table-width" style="width: 60px;"></th>
+                    <th class="data-table-head font-color custom-table-width">Codigo</th>
+                    <th class="data-table-head font-color custom-table-width">Fecha de solicitud</th>
+                    <th class="data-table-head font-color custom-table-width">Fecha de creación</th>
+                    <th class="data-table-head font-color custom-table-width">Solicitud</th>
+                    <th class="data-table-head font-color custom-table-width">Afectado</th>
+                    <th class="data-table-head font-color custom-table-width">Procesos</th>
+                    <th class="data-table-head font-color custom-table-width">Estado actual</th>
+                    <th class="data-table-head font-color custom-table-width" style="width: 60px;"></th>
                 </tr>
             </thead>
             <tbody>
-            
+
                 @for (solicitud of arraySolicitudes;track trackBySolicitud) {
-                <tr >
+                <tr>
                     <td class="data-table-body font-color">{{solicitud.idsolicitud}}</td>
                     <td class="data-table-body font-color">{{solicitud.fecha_solicitud2 | date: 'dd/MM/yyyy' }}</td>
-                    <td class="data-table-body font-color">{{ solicitud.fecha_creacion2 | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                    <td class="data-table-body font-color">{{ solicitud.fecha_creacion2 | date: 'dd/MM/yyyy HH:mm:ss' }}
+                    </td>
                     <td class="data-table-body font-color">{{solicitud.solicitud}}</td>
                     <td class="data-table-body font-color">{{solicitud.afectado}}</td>
-                    <td class="data-table-body font-color" (click)="verProcesos(solicitud)">{{solicitud.proceso.length}}</td>
+                    <td class="data-table-body font-color" (click)="verProcesos(solicitud)">{{solicitud.proceso.length}}
+                    </td>
                     <td class="data-table-body font-color" (click)="openModalPorEstado(solicitud.estado2, solicitud)">
                         <button [class]="obtenerClaseBoton(solicitud.estado2!)">{{solicitud.estado}}</button>
                     </td>
                     <td class="data-table-body" style="padding-right: 2px; text-align: right;">
                         <a mat-icon-button style="cursor: pointer;">
-                            <mat-icon mat-icon-button [matMenuTriggerFor]="menu" style="color: rgb(0, 0, 0);">more_vert</mat-icon>
+                            <mat-icon mat-icon-button [matMenuTriggerFor]="menu"
+                                style="color: rgb(0, 0, 0);">more_vert</mat-icon>
                         </a>
                         <mat-menu #menu="matMenu" class="custom-menu">
                             <a mat-menu-item (click)="openModal(1,solicitud,2)">
-                                <mat-icon>edit</mat-icon>
-                                <span class="mat-menu-item-style">Editar solicitud</span>
+
+                                <div style="display: flex; align-items: center;">
+
+                                    <img src="assets/icono_editar.PNG" alt="Evaluación Icon"
+                                        style="width: 30px; height: 30px; margin-right: 10px;">
+
+                                    <span class="mat-menu-item-style">Ver procesos</span>
+                                </div>
+
                             </a>
                             <a mat-menu-item (click)="verProcesos(solicitud)">
-                                <mat-icon >edit</mat-icon>
-                                <span class="mat-menu-item-style">Ver procesos</span>
+                                <div style="display: flex; align-items: center;">
+
+                                    <img src="assets/icono_ver_procesos.PNG" alt="Evaluación Icon"
+                                        style="width: 30px; height: 30px; margin-right: 10px;">
+
+                                    <span class="mat-menu-item-style">Ver procesos</span>
+                                </div>
                             </a>
-                            <a mat-menu-item (click)="openModal(2,solicitud,1)">
-                                <mat-icon >edit</mat-icon>
-                                <span class="mat-menu-item-style">Registrar evaluación</span>
+                            <a mat-menu-item (click)="openModal(2, solicitud, 1)"
+                                style="display: flex; align-items: center;">
+                                <div style="display: flex; align-items: center;">
+
+                                    <img src="assets/icono_evaluacion.PNG" alt="Evaluación Icon"
+                                        style="width: 30px; height: 30px; margin-right: 10px;">
+
+                                    <span class="mat-menu-item-style">Registrar evaluación</span>
+                                </div>
                             </a>
+
                             <a mat-menu-item (click)="openModal(3,solicitud,1)">
-                                <mat-icon >edit</mat-icon>
-                                <span class="mat-menu-item-style">Registrar implementación</span>
+
+                                <div style="display: flex; align-items: center;">
+
+                                    <img src="assets/icono_implementar.PNG" alt="Evaluación Icon"
+                                        style="width: 30px; height: 30px; margin-right: 10px;">
+
+                                    <span class="mat-menu-item-style">Registrar implementación</span>
+                                </div>
                             </a>
                             <a mat-menu-item (click)="openModal(4,solicitud,1)">
-                                <mat-icon >edit</mat-icon>
-                                <span class="mat-menu-item-style">Terminar solicitud</span>
+
+                                <div style="display: flex; align-items: center;">
+
+                                    <img src="assets/icono_terminacion.PNG" alt="Evaluación Icon"
+                                        style="width: 30px; height: 30px; margin-right: 10px;">
+
+                                    <span class="mat-menu-item-style">Terminar solicitud</span>
+                                </div>
                             </a>
-                            
+
                         </mat-menu>
                     </td>
                 </tr>
