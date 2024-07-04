@@ -14,3 +14,7 @@
 @if (divFormTerminacion){
     <app-frm-terminacion [Input_data]="_data" (acciones)="recibirAcciones($event)"></app-frm-terminacion>
 }
+
+@if (divTablaProcesos){
+    <app-tabla-procesos [Input_data]="_data" (acciones)="recibirAcciones($event)"></app-tabla-procesos>
+}

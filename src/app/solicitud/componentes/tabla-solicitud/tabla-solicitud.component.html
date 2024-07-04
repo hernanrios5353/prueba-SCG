@@ -48,7 +48,7 @@
                     <td class="data-table-body font-color">{{ solicitud.fecha_creacion2 | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
                     <td class="data-table-body font-color">{{solicitud.solicitud}}</td>
                     <td class="data-table-body font-color">{{solicitud.afectado}}</td>
-                    <td class="data-table-body font-color">{{solicitud.proceso.length}}</td>
+                    <td class="data-table-body font-color" (click)="verProcesos(solicitud)">{{solicitud.proceso.length}}</td>
                     <td class="data-table-body font-color" (click)="openModalPorEstado(solicitud.estado2, solicitud)">
                         <button [class]="obtenerClaseBoton(solicitud.estado2!)">{{solicitud.estado}}</button>
                     </td>
@@ -61,7 +61,7 @@
                                 <mat-icon>edit</mat-icon>
                                 <span class="mat-menu-item-style">Editar solicitud</span>
                             </a>
-                            <a mat-menu-item (click)="openModal(1,solicitud,1)">
+                            <a mat-menu-item (click)="verProcesos(solicitud)">
                                 <mat-icon >edit</mat-icon>
                                 <span class="mat-menu-item-style">Ver procesos</span>
                             </a>

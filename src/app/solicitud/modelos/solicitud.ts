@@ -28,7 +28,7 @@ export interface Evaluacion {
     idevaluacion: string;
     idsolicitud: string;
     fecha_evaluacion: string;
-    solicitud_evaluacion: string;
+    evaluacion: string;
     fecha_creacion: string;
 }
 
@@ -47,4 +47,15 @@ export interface Terminacion {
     terminacion: string;
     estado: '1' | '2';
     fecha_creacion: string;
+}
+
+// crear una interfaz que permita la integracion de evaluacion, implementacion que sera usada en una tabla
+// para eso se debe incorporar un campo que permita identificar el tipo de proceso
+
+export interface ProcesoIntegrado {
+    idsolicitud:string
+    idproceso: string;
+    i_Evaluacion?: Evaluacion;
+    i_Implementacion?: Implementacion;
+    i_Terminacion?: Terminacion;
 }

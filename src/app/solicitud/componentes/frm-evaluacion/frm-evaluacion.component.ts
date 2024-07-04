@@ -58,7 +58,7 @@ export class FrmEvaluacionComponent  implements OnInit{
       idevaluacion: [''],
       idsolicitud: [''],
       fecha_evaluacion: [moment().format('DD/MM/YYYY'), Validators.required],
-      solicitud_evaluacion: ['', Validators.required],
+      evaluacion: ['', Validators.required],
       fecha_creacion: [moment().format('DD/MM/YYYY')],
     });
   }
@@ -106,7 +106,7 @@ export class FrmEvaluacionComponent  implements OnInit{
       idevaluacion: frm_evaluacion.value.idevaluacion,
       idsolicitud: this.Input_data.idsolicitud,
       fecha_evaluacion: frm_evaluacion.value.fecha_evaluacion,
-      solicitud_evaluacion: frm_evaluacion.value.solicitud_evaluacion,
+      evaluacion: frm_evaluacion.value.evaluacion,
       fecha_creacion: frm_evaluacion.value.fecha_creacion,
     };
 
@@ -167,7 +167,7 @@ export class FrmEvaluacionComponent  implements OnInit{
       idevaluacion: nuevoIdevaluacion,
       idsolicitud: this.Input_data.data.idsolicitud,
       fecha_evaluacion: frm_evaluacion.value.fecha_evaluacion,
-      solicitud_evaluacion: frm_evaluacion.value.solicitud_evaluacion,
+      evaluacion: frm_evaluacion.value.evaluacion,
       fecha_creacion: frm_evaluacion.value.fecha_creacion,
     };
 
@@ -211,7 +211,7 @@ export class FrmEvaluacionComponent  implements OnInit{
         if (objeto.hasOwnProperty(key) && !objeto[key]) {
 
           switch (key) {
-            case "solicitud_evaluacion":
+            case "evaluacion":
               nomVariable = "Evaluación";
               break;
             case "fecha_evaluacion":
@@ -320,10 +320,15 @@ export class FrmEvaluacionComponent  implements OnInit{
       idevaluacion: data.idevaluacion,
       idsolicitud: data.idsolicitud,
       fecha_evaluacion: moment(data.fecha_evaluacion).format('DD/MM/YYYY'),
-      solicitud_evaluacion: data.solicitud_evaluacion,
+      evaluacion: data.evaluacion,
       fecha_creacion: moment(data.fecha_creacion).format('DD/MM/YYYY'),
     });
   }
+
+  cerrarModal() {
+    this.F_acciones('cerrar', {});
+  }
+
 
   ngOnInit() {
 

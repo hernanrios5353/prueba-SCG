@@ -15,9 +15,9 @@
                         <textarea 
                             style="padding: 10px;"
                             matInput 
-                            formControlName="solicitud_evaluacion"  
-                            name="solicitud_evaluacion" 
-                            id="solicitud_evaluacion" 
+                            formControlName="evaluacion"  
+                            name="evaluacion" 
+                            id="evaluacion" 
                             placeholder="Describa la evaluación">
                         </textarea>
                     </mat-form-field>
@@ -59,7 +59,7 @@
 
                     <div class="col l4 m4 s6" style="margin-top: 10px; padding: 2px;">
                         <div class="col l12 m12 s12">
-                            <a class="btn btn-formato-blue">{{titulo_btn_cancelar}}</a>
+                            <a class="btn btn-formato-blue" (click)="cerrarModal()">{{titulo_btn_cancelar}}</a>
                         </div>
                     </div>
 

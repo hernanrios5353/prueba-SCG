@@ -293,6 +293,10 @@ export class FrmSolicitudComponent implements OnInit{
     });
   }
 
+  cerrarModal() {
+    this.F_acciones('cerrar', {});
+  }
+
   ngOnInit() {
     let data = this.Input_data.data;
     if(this.Input_data.opc == 1){

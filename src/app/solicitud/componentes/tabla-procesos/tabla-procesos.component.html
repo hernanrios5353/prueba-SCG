@@ -1,1 +1,35 @@
-<p>tabla-procesos works!</p>
+<div class="col l12 m12 s12 background-tabla">
+
+    <div class="col l12 m12 s12">
+        <h3 style="font-weight: 500;">Historial de procesos</h3>
+    </div>
+    
+    <div style="max-height: 600px; overflow-y: auto;">
+        <table class="responsive-table bordered">
+            <thead class="header-tabla">
+                <tr>
+                    <th  class="data-table-head font-color custom-table-width">Tipo</th>
+                    <th  class="data-table-head font-color custom-table-width">Descripción</th>
+                    <th  class="data-table-head font-color custom-table-width">Fecha</th>
+                    <th  class="data-table-head font-color custom-table-width">Fecha de Creación</th>
+                    <th  class="data-table-head font-color custom-table-width">Codigo de proceso</th>
+                    <th  class="data-table-head font-color custom-table-width">Codigo de solicitud</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+                @for (proceso of arrayProcesos;track trackByProcesos) {
+                <tr >
+                    <td class="data-table-body font-color">{{ proceso.tipo }}</td>
+                    <td class="data-table-body font-color">{{ proceso.descripcion }}</td>
+                    <td class="data-table-body font-color">{{ proceso.fecha | date: 'dd/MM/yyyy' }}</td>
+                    <td class="data-table-body font-color">{{ proceso.fecha_creacion | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                    <td class="data-table-body font-color">{{ proceso.id_pk }}</td>
+                    <td class="data-table-body font-color">{{ proceso.id_fk }}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>

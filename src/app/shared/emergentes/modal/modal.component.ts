@@ -6,7 +6,7 @@ import { FrmSolicitudComponent } from '../../../solicitud/componentes/frm-solici
 import { FrmEvaluacionComponent } from '../../../solicitud/componentes/frm-evaluacion/frm-evaluacion.component'
 import { FrmImplementacionComponent } from '../../../solicitud/componentes/frm-implementacion/frm-implementacion.component'
 import { FrmTerminacionComponent } from '../../../solicitud/componentes/frm-terminacion/frm-terminacion.component'
-
+import { TablaProcesosComponent } from '../../../solicitud/componentes/tabla-procesos/tabla-procesos.component'
 
 @Component({
   selector: 'app-modal',
@@ -15,7 +15,8 @@ import { FrmTerminacionComponent } from '../../../solicitud/componentes/frm-term
     FrmSolicitudComponent,
     FrmEvaluacionComponent,
     FrmImplementacionComponent,
-    FrmTerminacionComponent
+    FrmTerminacionComponent,
+    TablaProcesosComponent
   ],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss'
@@ -26,6 +27,7 @@ export class ModalComponent implements OnInit{
   divFormEvaluacion: boolean = false;
   divFormImplementacion: boolean = false;
   divFormTerminacion: boolean = false;
+  divTablaProcesos: boolean = false;
 
   _data: object = {};
 
@@ -69,6 +71,10 @@ export class ModalComponent implements OnInit{
         console.log('Formulario de terminación');
         this.divFormTerminacion = true;
         break;
+      case 5:
+        console.log('Tabla de procesos');
+        this.divTablaProcesos = true;
+        break;
       default:
         console.log('Formulario no reconocido');
     }
@@ -83,6 +89,10 @@ export class ModalComponent implements OnInit{
         this._data = this.objeto;
         break;
       case 3:
+        console.log('Ver');
+        this._data = this.objeto;
+        break;
+      case 4:
         console.log('Ver');
         this._data = this.objeto;
         break;

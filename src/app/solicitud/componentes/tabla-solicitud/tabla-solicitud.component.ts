@@ -97,7 +97,7 @@ export class TablaSolicitudComponent implements OnInit{
     });
   }
 
-  openModal(form: number,solicitud: any | null, opc: number): void {
+  openModal(form: number,solicitud: any | null, opc: number, _width?:string): void {
 
     let data = {
       form: form,
@@ -112,7 +112,7 @@ export class TablaSolicitudComponent implements OnInit{
     }
     else{
       const dialogRef =this.dialog.open(ModalComponent,{
-        width: '600px',
+        width: _width ||'600px',
         height: 'auto',
         data:data,
         autoFocus: false
@@ -225,6 +225,15 @@ export class TablaSolicitudComponent implements OnInit{
     
   }
 
+  verProcesos(solicitud: any): void {
+
+    if(solicitud.proceso.length>0){
+      this.openModal(5,solicitud,3, '1200px');
+    }
+
+
+  }
+
   obtenerClaseBoton(estado: number): string {
     switch (estado) {
       case 1:
@@ -253,6 +262,7 @@ export class TablaSolicitudComponent implements OnInit{
   2 = Formulario de evaluacion
   3 = Formulario de implementación
   4 = Formulario de terminacion
+  5 = Tabla de procesos
 
   Opciones de modal (opc):
   1 = Crear

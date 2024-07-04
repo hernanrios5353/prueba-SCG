@@ -354,6 +354,10 @@ export class FrmTerminacionComponent implements OnInit{
     });
   }
 
+  cerrarModal() {
+    this.F_acciones('cerrar', {});
+  }
+  
   ngOnInit() {
 
     console.log(this.Input_data);
